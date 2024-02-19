@@ -30,21 +30,17 @@ def determinante(matriz):
 def cofator(matriz, linha, coluna):
     ordem = len(matriz)
     matriz_cofator = gerar_matriz(ordem - 1, complete=True)
-    contador = 0
+    linha_cofator = 0
+    coluna_cofator = 0
     for i in range(ordem):
         for j in range(ordem):
             if i != linha and j != coluna:
-                if contador == 0 or contador == 1:
-                    linha_cofator = 0
-                    coluna_cofator = contador
-                else:
-                    pos = bin(contador).replace("0b", "")
-                    index = math.ceil(len(pos) / 2)
-                    linha_cofator = int(pos[:index], 2)
-                    coluna_cofator = int(pos[index:], 2)
-
                 matriz_cofator[linha_cofator][coluna_cofator] = matriz[i][j]
-                contador += 1                    
+
+                coluna_cofator += 1
+                if coluna_cofator == ordem:
+                    linha_cofator += 1
+                    coluna_cofator = 0
     
     det = determinante(matriz_cofator)
     cofator = det * ((-1)**(linha + coluna))
