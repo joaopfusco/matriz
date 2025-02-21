@@ -12,7 +12,7 @@ def prod_diagonal_principal(matriz):
     produto = 1
     for i in range(n):
         produto *= matriz[i][i]
-    return produto
+    return abs(produto) if produto == 0 else produto
 
 def valores_matriz_triangular(matriz):
     n = len(matriz)
@@ -65,7 +65,7 @@ def gerar_matriz(ordem, complete=None):
         
     return matriz
 
-def gerar_matriz_triangularizada(matriz, printf=False):
+def gerar_matriz_triangularizada(matriz, printf=True):
     ordem = len(matriz)
     matriz_triangular = valores_matriz_triangular(matriz)
     matriz_triangularizada = gerar_matriz(ordem, complete=matriz)
